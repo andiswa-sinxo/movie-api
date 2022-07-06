@@ -9,7 +9,7 @@ create table user_details(
 create table user_playlist(
     id serial not null primary key,
     user_id int,
-    movie_list text not null,
+    movie_id int,
     foreign key (user_id) references user_details(id)
 
 )
