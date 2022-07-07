@@ -8,18 +8,7 @@ var API =  require('./script')
 app.use(express.json())
 app.use(cors())
 
-// let useSSL = false;
-// let local = process.env.LOCAL || false;
-// if (process.env.DATABASE_URL && !local){
-//     useSSL = true;
-// }
 
-// const pool = new Pool({
-//     connectionString,
-//     ssl :  {
-//     rejectUnauthorized: false
-//     }
-//   });
 
 const DATABASE_URL = process.env.DATABASE_URL;
 const pgp = PgPromise({});
