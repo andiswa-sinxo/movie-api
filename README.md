@@ -8,4 +8,6 @@
 - Used bootstrapp for the inputs and for the buttons
 - When the user loggin, can be able to search for a movie and the app will display all the movies that has the name that the user search for
 - Still have to work on the post route for the playlist and test it
+- Haven't used cors 
+
 
