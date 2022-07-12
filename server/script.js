@@ -60,8 +60,8 @@ module.exports = (app, db) => {
 
             if (oldUser.length === 0) {
                 const cryptedPassword = await bcrypt.hash(password, 10)
-                let faka = await db.any('INSERT INTO user_details (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, cryptedPassword]);
-                console.log(faka);
+                let insert = await db.any('INSERT INTO user_details (firstname, lastname, username, password) VALUES ($1, $2, $3, $4)', [firstname, lastname, username, cryptedPassword]);
+                console.log(insert);
                 const user = await db.manyOrNone('select * from user_details where username = $1', [username])
 
                 const token = await jwt.sign({ user }, `secretKey`, { expiresIn: `24h` });
@@ -73,10 +73,6 @@ module.exports = (app, db) => {
             else {
                 throw Error("User Already Exist. Please Login");
             }
-
-
-
-
 
 
         } catch (error) {
@@ -93,8 +89,9 @@ module.exports = (app, db) => {
             user_id,
             movie_id } = req.body
         try {
+
             let getUserId = await db.oneOrNone('INSERT INTO user_playlist (user_id, movie_id) VALUES ($1, $2)', [user_id, movie_id]);
-            await db.oneOrNone('select movie_id from user_playlists where user_id = $1', [getUserId])
+            await db.oneOrNone('select movie_id from user_playlist where user_id = $1', [getUserId])
         } catch (error) {
             res.json({
                 status: error.message
